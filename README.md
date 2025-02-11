@@ -1,10 +1,24 @@
-# README (English Version)
+# MCT Search
 
 This repository provides a simple example of how to generate **solutions** to a given query using OpenAI Chat Completion, reflect on those solutions with **Pydantic** models, and then explore these outcomes using a **Monte Carlo Tree (MCT)**-style workflow.
 
 ---
 
-## Overview
+## 🦜 QuickStart
+
+You need `poetry` dependency to run this code.
+Check Document of [Poetry](https://python-poetry.org/docs/)!
+
+```sh
+poetry install
+poetry shell
+python -m app.main "who is the best person in the world?"
+```
+
+Then, You can see final result dumped to json file!
+
+
+## 👀 Overview
 
 - **`models.py`**: Defines data models (using Pydantic) for:
   - **Answer**: Holds the main answer and a descriptive explanation.
@@ -72,25 +86,3 @@ By repeating these steps for a fixed number of iterations (or until a suitable s
    - If `snapshot=True`, the code automatically saves the tree structure as a JSON file, containing nodes, edges, and each node’s solution/reflection details.
 
 ---
-
-## Example Usage
-
-```python
-from tree import MonteCarloTree
-
-if __name__ == "__main__":
-    # Initialize the MCT with desired configuration
-    mct = MonteCarloTree(depth_limit=3, leafs_limit=2, snapshot=True)
-
-    # The query we want to solve
-    query = "How to build a chatbot similar to ChatGPT?"
-
-    # Run the tree search
-    final_solution = mct.run(query=query, loop=5, pre_terminate=True)
-
-    if final_solution:
-        print("A solution was found:", final_solution)
-    else:
-        print("No solution could be determined within the given limits.")
-```
-

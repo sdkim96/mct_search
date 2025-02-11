@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from openai import OpenAI
 
-import models
+import app.models as models
 
 GROUD_MODEL="gpt-4o-mini"
 SYSTEM_PROMPT = "You are a helpful assistant."

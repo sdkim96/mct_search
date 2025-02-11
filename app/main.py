@@ -1,17 +1,21 @@
+import argparse
+from dotenv import load_dotenv
+from app.tree import MonteCarloTree
 
 def main():
-    from dotenv import load_dotenv
-    from tree import MonteCarloTree
     load_dotenv()
 
-    query = "Who was the president of Korea that has bald hair?"
+    parser = argparse.ArgumentParser(description="Run MonteCarloTree with a query.")
+    parser.add_argument("query", type=str, help="The query to process")
+    args = parser.parse_args()
 
     tree = MonteCarloTree(snapshot=True)
-    solution = tree.run(query=query, loop=3, pre_terminate=True)
+    solution = tree.run(query=args.query, loop=3, pre_terminate=True)
 
-    print(solution)
-
+    if solution:
+        print(solution.model_dump(mode='json'))
+    else:
+        print("No solution found")
 
 if __name__ == "__main__":
     main()
-    

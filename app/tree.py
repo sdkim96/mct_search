@@ -4,8 +4,8 @@ import json
 from datetime import datetime
 from typing import List, Optional, Tuple
 
-import models
-import chat
+import app.models as models
+import app.chat as chat
 
 ROOT_ID = uuid.UUID(int=0)
 DEPTH_LIMIT = 3

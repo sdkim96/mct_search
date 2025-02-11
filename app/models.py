@@ -3,9 +3,8 @@ from typing import List
 from pydantic import BaseModel, Field 
 
 class Answer(BaseModel):
-    answer: str | None = Field(
-        description="Answer to the question. If it's hard to judge, None",
-        default=None
+    answer: str = Field(
+        description="Answer to the question."
     )
     description: str = Field(
         description="Description of the answer",
@@ -13,12 +12,12 @@ class Answer(BaseModel):
 
     def __repr__(self):
         return (
-            f"answer: {self.answer[:3] if self.answer else 'None'}, description: {self.description}\n"
+            f"answer: {self.answer[:5]}..., description: {self.description}\n"
         )
 
     def __str__(self):
         return (
-            f"answer: {self.answer[:3] if self.answer else 'None'}..., description: {self.description}\n"
+            f"answer: {self.answer[:5]}..., description: {self.description}\n"
         )
 
 
