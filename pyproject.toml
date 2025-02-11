@@ -2,7 +2,7 @@
 name = "mct-search"
 version = "0.1.0"
 description = ""
-authors = ["김성동 <sdkim@didim365.co.kr>"]
+authors = ["김성동 <seong960603@gmail.com>"]
 readme = "README.md"
 packages = [
     { include = "app" },

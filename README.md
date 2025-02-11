@@ -1,4 +1,4 @@
-# MCT Search
+# 🎯 MCT Search
 
 This repository provides a simple example of how to generate **solutions** to a given query using OpenAI Chat Completion, reflect on those solutions with **Pydantic** models, and then explore these outcomes using a **Monte Carlo Tree (MCT)**-style workflow.
 
@@ -40,7 +40,7 @@ Then, You can see final result dumped to json file!
 
 ---
 
-## Monte Carlo Tree Search (MCT) Algorithm (Simplified)
+## 🌲 Monte Carlo Tree Search (MCT) Algorithm (Simplified)
 
 MCTS typically involves four main phases: **Selection**, **Expansion**, **Simulation**, and **Backpropagation**. In this code, we have a streamlined approach:
 
@@ -65,7 +65,7 @@ By repeating these steps for a fixed number of iterations (or until a suitable s
 
 ---
 
-## High-Level Execution Flow
+## ⚙️ High-Level Execution Flow
 
 1. **Create and Configure the Tree**  
    Instantiate `MonteCarloTree`, specifying:
