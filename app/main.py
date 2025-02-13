@@ -9,8 +9,12 @@ def main():
     parser.add_argument("query", type=str, help="The query to process")
     args = parser.parse_args()
 
-    tree = MonteCarloTree(snapshot=True)
-    solution = tree.run(query=args.query, loop=3, pre_terminate=True)
+    tree = MonteCarloTree(
+        leafs_limit=3,
+        depth_limit=3,
+        snapshot=True
+    )
+    solution = tree.run(args.query, loop=3, pre_terminate=True)
 
     if solution:
         print(solution.model_dump(mode='json'))

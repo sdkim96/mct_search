@@ -66,7 +66,7 @@ class Node:
             None
 
         """
-        node: Node = self
+        node = self
 
         while node.is_not_root:
             node.visits += 1 
@@ -86,7 +86,7 @@ class Node:
 
         """
         trajectory: List[Node] = [self]
-        node: Node = self
+        node = self
         while node.is_not_root:
 
             if node.parent is not None:
@@ -132,10 +132,10 @@ class MonteCarloTree:
     """
 
     def __init__(
-        self,
+        self,        
+        *,
         depth_limit: int = DEPTH_LIMIT,
         leafs_limit: int = LEAFS_LIMIT,        
-        *,
         snapshot: bool = False,
         **kwargs
     ):
@@ -179,6 +179,7 @@ class MonteCarloTree:
     def run(
         self, 
         query: str,
+        *,
         loop: int = 3,
         pre_terminate: bool = False,
     ) -> models.Solution | None:
