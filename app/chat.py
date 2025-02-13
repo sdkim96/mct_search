@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import cast, Iterable
 from openai import OpenAI
 
 import app.models as models
@@ -9,7 +10,7 @@ SYSTEM_PROMPT = "You are a helpful assistant."
 class BaseResponse(BaseModel):
     response: str
 
-def invoke(
+def _invoke(
     user_prompt: str, 
     response_model,
     system_prompt: str | None = None,
@@ -26,7 +27,7 @@ def invoke(
     client = OpenAI()
     completion = client.beta.chat.completions.parse(
         model=GROUD_MODEL,
-        messages=messages, # type: ignore
+        messages=cast(Iterable, messages),
         response_format=response_model
     )
     
@@ -35,6 +36,8 @@ def invoke(
     
     if answer:
         return answer
+    
+    else: raise
     
 
 def solve(query: str, context: str) -> models.Solution:
@@ -54,7 +57,7 @@ def solve(query: str, context: str) -> models.Solution:
     {query}        
     """
 
-    solution: models.Solution = invoke(user_prompt=user_prompt, response_model=models.Solution) # type: ignore
+    solution= cast(models.Solution, _invoke(user_prompt=user_prompt, response_model=models.Solution))
 
     if solution:
         return solution
@@ -74,7 +77,7 @@ def reflect(solution: models.Solution) -> models.Reflection:
     {solution.model_dump(mode='json')}   
     """
     
-    reflection: models.Reflection = invoke(user_prompt=user_prompt, response_model=models.Reflection) # type: ignore
+    reflection = cast(models.Reflection, _invoke(user_prompt=user_prompt, response_model=models.Reflection))
 
     if reflection:
         return reflection
